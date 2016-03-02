@@ -14,13 +14,13 @@
 			<div class="pull-right">
 				<button ng-click="startGame()" ng-show="!game">Start Game</button>
 				<button ng-click="startGame()" ng-show="game">New Game</button>
-				<div class="alert" ng-show="game" ng-class="{'alert-success': game.guesses < 5, 'alert-warning': game.guesses >= 5 && game.guesses < 8, 'alert-danger': game.guesses >= 8 }">Guesses Remaining: {{10 - game.guesses}} {{game.message}}
+				<div class="alert" ng-show="game" ng-class="{'alert-success': game.guesses < 5, 'alert-warning': game.guesses >= 5 && game.guesses < 8, 'alert-danger': game.guesses >= 8 }">Guesses Remaining: {{(10 - game.guesses > 0) ? 10 - game.guesses : 'none'}} {{game.message}}
 				</div>
 			</div>
 			<h3>Guess Who</h3>
 
 			<div class="controls" ng-show="game">
-				Character Traits... Cost: {{game.traitsCost}}
+				Character Traits Left: {{(10-game.traitsCost > 0) ? 10-game.traitsCost : 'No traits left!'}}
 				<div class="btn-group" ng-show="game">
 					<button type="button" ng-repeat="prop in game.propertyList" ng-click="propertyCheck(prop)" ng-show="!prop.used" class="btn btn-default">{{prop.name}}</button>
 				</div>
